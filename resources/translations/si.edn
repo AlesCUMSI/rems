@@ -1,0 +1,734 @@
+{:t
+ {:accept-invitation {:header "Sprejmi povabilo"
+                      :title "Sprejmi povabilo"
+                      :success {:workflow "Uspešno pridružen delovni tok."}
+                      :errors {:invalid-invitation-type "Sprejemanje povabila ni uspelo."
+                               :invalid-token [:span "Sprejemanje povabila ni uspelo. Preverite žeton povabila " [:code "%1"]]
+                               :invalid-workflow "Sprejemanje povabila ni uspelo."}}
+  :actions {:accept-invitation "Sprejmi povabilo"
+            :accept-invitation-success "Uspešno pridružen vlogi."
+            :accept-licenses "Sprejmi pogoje uporabe"
+            :add-licenses "Dodaj pogoje uporabe"
+            :add-member "Dodaj člana"
+            :approve "Potrdi"
+            :approve-end-date "Datum poteka pravic dostopa (neobvezno)"
+            :approve-reject "Potrdi ali zavrni"
+            :assign-external-id "Dodeli zunanji ID"
+            :assign-external-id-info "Zunanji ID"
+            :bundling-intro [:div.intro [:p "Upoštevajte, da je mogoče združiti le vire, ki imajo enak aplikacijski delovni tok."]]
+            :cancel "Prekliči"
+            :change-applicant "Spremeni prijavitelja"
+            :change-resources "Spremeni vire"
+            :change-processing-state "Spremeni stanje"
+            :clear "Počisti"
+            :close "Zavrži vlogo"
+            :close-intro [:div.intro [:p "Upoštevajte, da če je vloga zavržena, je ne bo mogoče več spreminjati ali oddati."]]
+            :commands "Dejanja"
+            :decide "Odloči se"
+            :delete "Izbriši osnutek"
+            :delete-intro [:div.intro [:p "Ali želite trajno izbrisati ta osnutek?"]]
+            :errors {:handling-user-cannot-join "Uporabnik ne more postati član vloge."
+                     :duplicate-id "ID je že v uporabi."
+                     ;; %1 - invitation token
+                     :invalid-token [:div [:p "Pridružitev vlogi ni uspela."] [:p "Preverite žeton povabila " [:code "%1"]]]
+                     :licenses-not-accepted "Pogoji uporabe niso sprejeti."
+                     ;; %1 - organization name
+                     :organization-does-not-exist "Organizacija \"%1\" ne obstaja"
+                     :validation-errors "Preverite naslednje napake:"
+                     :validation-warnings "Pred oddajo preverite naslednje:"
+                     :entitlement-end-not-in-future "Datum poteka pravic dostopa mora biti v prihodnosti."}
+            :handled-applications "Obdelane vloge"
+            :handled-applications-count "Obdelanih je %:count% vlog."
+            :invite-member "Povabi člana"
+            :licenses-selection "Dodaj pogoje uporabe"
+            :member "Član"
+            :member-email "E-pošta"
+            :member-name "Ime"
+            :modify "Spremeni"
+            :name-and-email-required "Ime in e-pošta sta obvezna."
+            :redact-attachments "Uredi priloge"
+            :reject "Zavrni"
+            :remark "Pripomba"
+            :remove-attachments "Odstrani priloge"
+            :remove-member "Odstrani člana"
+            :replace-attachments "Zamenjaj priloge"
+            :request-decision "Zahtevaj odločitev"
+            :request-decision-dropdown "Zahtevaj odločitev"
+            :request-decision-dropdown-from-user "od obstoječega uporabnika..."
+            :request-decision-dropdown-via-email "po e-pošti..."
+            :request-decision-from-user "Zahtevaj odločitev od obstoječega uporabnika"
+            :request-decision-via-email "Zahtevaj odločitev po e-pošti"
+            :request-review "Zahtevaj pregled"
+            :request-review-dropdown "Zahtevaj pregled"
+            :request-review-dropdown-from-user "od obstoječega uporabnika..."
+            :request-review-dropdown-via-email "po e-pošti..."
+            :request-review-from-user "Zahtevaj pregled od obstoječega uporabnika"
+            :request-review-via-email "Zahtevaj pregled po e-pošti"
+            :request-selections "Pošlji vloge na"
+            :resources-selection "Viri vključeni v vlogo:"
+            :return "Vrni prijavitelju"
+            :review "Preglej"
+            :revoke "Prekliči pravico"
+            :show-to-applying-users "Prikaži prijaviteljem"
+            :todo-applications "Odprte vloge"
+            :todo-applications-count "Obstaja %:count% odprtih vlog."
+            :vote "Glasuj"}
+  :administration {:active "Aktivno"
+                   :add "Dodaj"
+                   :added-at "Dodano ob"
+                   :added-by "Dodano od"
+                   :anonymize-handling "Anonimizirano upravljanje"
+                   :application-state "Stanje vlog"
+                   :archive "Arhiv"
+                   :back "Nazaj"
+                   :blacklist "Črni seznam"
+                   :cancel "Prekliči"
+                   :catalogue-item "Element v katalogu"
+                   :catalogue-items "Elementi v katalogu"
+                   :categories "Kategorije"
+                   :category "Kategorija"
+                   :category-children "Podkategorije"
+                   :comment "Komentar"
+                   :copy-as-new "Kopiraj kot novo"
+                   :create-catalogue-item "Ustvari nov katalog"
+                   :create-category "Ustvari kategorijo"
+                   :create-form "Ustvari obrazec"
+                   :create-license "Ustvari licenco"
+                   :create-organization "Ustvari organizacijo"
+                   :create-resource "Ustvari vir"
+                   :create-workflow "Ustvari delovni tok"
+                   :created "Ustvarjeno"
+                   :delete "Izbriši"
+                   :delete-confirmation "Ali res želite izbrisati?"
+                   :description "Opis"
+                   :disable "Onemogoči"
+                   :disabled-command "Onemogočeno dejanje"
+                   :disabled-commands "Onemogočena dejanja"
+                   :disabled-and-archived-explanation "Onemogočanje skrije elemente pred prijavitelji. Arhiviranje jih skrije tudi v administrativnem pogledu."
+                   :display-archived "Prikaži arhivirano"
+                   :display-order "Prikaži vrstni red"
+                   :display-own-organization-only-explanation "Naj bodo prikazani le elementi lastne organizacije?"
+                   :display-own-organization-only "Samo lastna organizacija"
+                   :do-not-change-form "Ne spreminjaj obrazca"
+                   :do-not-change-workflow "Ne spreminjaj delovnega toka"
+                   :edit "Uredi"
+                   :edit-catalogue-item "Uredi katalog"
+                   :edit-category "Uredi kategorijo"
+                   :edit-form "Uredi obrazec"
+                   :edit-organization "Uredi organizacijo"
+                   :edit-workflow "Uredi delovni tok"
+                   :email "E-pošta"
+                   :enable "Omogoči"
+                   :end "Konec"
+                   :errors {:dependencies-archived "Arhivirani odvisni elementi:"
+                            :in-use-by "Uporabljajo ga:"
+                            :dependencies-not-found "Manjkajoči odvisni elementi:"
+                            :self-as-subcategory-disallowed "Kategorije ni mogoče nastaviti kot lastno podkategorijo"
+                            :ancestor-as-subcategory-disallowed "Kategorije ni mogoče nastaviti kot podkategorijo, ker bi to povzročilo zanko"}
+                   :export-applications "Izvozi vloge"
+                   :external-title "Naslov"
+                   :form "Obrazec"
+                   :forms "Obrazci"
+                   :handlers-vote "Glasovanje obravnavalcev"
+                   :has-errors "Napake"
+                   :id "ID"
+                   :internal-name "Ime"
+                   :license "Licenca"
+                   ;; %1 - license name
+                   :license-field "Licenca \"%1\""
+                   :licenses "Licence"
+                   :manage-categories "Upravljanje kategorij"
+                   :more-info "Več informacij URL"
+                   :name "Ime"
+                   :no-categories "Ni kategorij"
+                   :no-form "Ni obrazca"
+                   :no-forms "Ni obrazcev"
+                   :no-licenses "Ni licenc"
+                   :no-voting "Ni glasovanja"
+                   :optional "(neobvezno)"
+                   :org "Org"
+                   :organization "Organizacija"
+                   :organizations "Organizacije"
+                   :owners "Lastniki"
+                   :preview "Predogled"
+                   :processing-state "Stanje obdelave"
+                   :processing-states "Stanja obdelave"
+                   :remove "Odstrani"
+                   :reports "Poročila"
+                   :resource "Vir"
+                   :resources "Viri"
+                   ;; %1 - number
+                   :review-email-n "Preglej e-pošto %1"
+                   :review-emails "Preglej e-pošto"
+                   :reviewers-vote "Glasovanje pregledovalcev"
+                   :save "Shrani"
+                   :short-name "Kratko ime"
+                   :start "Začni"
+                   :technical-value "Tehnična vrednost"
+                   :title "Naslov"
+                   :type "Tip"
+                   :unarchive "Odstrani iz arhive"
+                   :update-catalogue-item "Posodobi katalog"
+                   :user "Uporabnik"
+                   :userid "Uporabniški ID"
+                   :user-role "Vloga uporabnika"
+                   :view "Pogled"
+                   :voting "Glasovanje"
+                   :workflow "Delovni tok"
+                   :workflows "Delovni tokovi"
+                   :workflow-anonymize-handling-explanation "Ta delovni tok skrije osebne podatke upravljalcev (npr. ime in e-pošto) prijaviteljem."
+                   :workflow-disabled-commands-explanation "Ta delovni tok onemogoči dejanja za uporabnike, ko veljajo določeni pogoji."
+                   :workflow-processing-states-explanation "Ta delovni tok omogoča upravljalcu, da nastavi in posodobi stanje obdelave aplikacije."
+                   :workflow-type "Tip delovnega toka"}
+  :applicant-info {:applicant "Prijavitelj"
+                   :applicants "Prijavitelji"
+                   :email "E-pošta"
+                   :email-idp "E-pošta (od ponudnika identitete)"
+                   :invited-member "Povabljen član"
+                   :member "Član"
+                   :name "Ime"
+                   :notification-email "E-pošta (nastavil uporabnik)"
+                   :organization "Organizacija"
+                   :researcher-status "Status raziskovalca prijavitelja"
+                   :username "Uporabniško ime"}
+  :applications {:all-applications "Vse vloge"
+                 :applicant "Prijavitelj"
+                 :application "Vloga"
+                 :applications "Vloge"
+                 :attachment-filename-redacted "Priloga urejena"
+                 :continue-existing-application "Nadaljuj z vlogo"
+                 :copied-from "kopirano iz"
+                 :copied-to "%:event-actor% kopiral vlogo v novo vlogo."
+                 :created "Ustvarjeno"
+                 ;; TODO: Once the terms have stabilized, convert db and the
+                 ;;   code to match the term in UI.
+                 :description "Naslov"
+                 :details "Podrobnosti"
+                 :duos {:validation {:missing-duo-codes "Kode ontologije uporabe podatkov so določene v virih, vendar manjkajo v vlogi:"}}
+                 :empty "Ni vlog."
+                 ;; %1 - date
+                 :entitlement-end "Pravice dostopa prenehajo %1."
+
+                 ;; Format parameters for all events:
+                 ;; %1 - %:event-actor% - name of event actor
+                 ;;
+                 ;; Vector parameters (%1, %2, ...) in extra translations are supported for backwards compatibility.
+                 ;; They cannot be mixed with named format parameters, and have fixed positions.
+                 :events {;; Extra parameters for applicant-changed:
+                          ;; %2 - %:new-applicant% - Name of the new applicant
+                          :applicant-changed "%:event-actor% spremenil prijavitelja v %:new-applicant%."
+                          :approved "%:event-actor% odobril vlogo."
+                          :attachments-redacted "%:event-actor% uredil priloge."
+                          :closed "%:event-actor% zaprl vlogo."
+                          :copied-from "Ta vloga je kopija stare vloge."
+                          :copied-to "%:event-actor% kopiral vlogo v novo vlogo."
+                          ;; Extra parameters for created:
+                          ;; %2 - %:application-external-id% - External id of the new application
+                          :created "%:event-actor% ustvaril vlogo %:application-external-id%."
+                          :decided "%:event-actor% vložil odločitev za vlogo."
+                          ;; Extra parameters for decider-invited:
+                          ;; %2 - %:invited-user% - Name & email of decider
+                          :decider-invited "%:event-actor% povabil %:invited-user% k odločitvi."
+                          :decider-joined "%:event-actor% sprejel povabilo k odločitvi."
+                          ;; Extra parameters for decision-requested:
+                          ;; %2 - %:requested-users% - Comma-separated list of requested deciders names
+                          :decision-requested "%:event-actor% zahteval odločitev od %:requested-users%."
+                          :deleted "%:event-actor% izbrisal osnutek."
+                          :draft-saved "%:event-actor% posodobil vlogo."
+                          ;; Extra parameters for external-id-assigned:
+                          ;; %2 - %:application-external-id% - External id of the application
+                          :external-id-assigned "%:event-actor% dodelil zunanji ID %:application-external-id%."
+                          :expiration-notifications-sent "%:event-actor% poslal e-pošto z obvestilom o poteku."
+                          :licenses-accepted "%:event-actor% sprejel pogoje uporabe."
+                          :licenses-added "%:event-actor% dodal pogoje uporabe."
+                          ;; Extra parameters for member-added:
+                          ;; %2 - %:added-user% - Name of the added member
+                          :member-added "%:event-actor% dodal %:added-user% k vlogi."
+                          ;; Extra parameters for member-invited:
+                          ;; %2 - %:invited-user% - Name of the invited member
+                          :member-invited "%:event-actor% povabil %:invited-user% k vlogi."
+                          :member-joined "%:event-actor% se pridružil vlogi."
+                          ;; Extra parameters for member-removed:
+                          ;; %2 - %:removed-user% - Name of the removed member
+                          :member-removed "%:event-actor% odstranil %:removed-user% iz vloge."
+                          ;; Extra parameters for member-uninvited:
+                          ;; %2 - %:uninvited-user% - Name of the uninvited member
+                          :member-uninvited "%:event-actor% odstranil %:uninvited-user% iz vloge."
+                          ;; Extra parameters for processing-state-changed:
+                          ;; %2 - %:state% - Localized name of the new state
+                          :processing-state-changed "%:event-actor% spremenil stanje obdelave vloge v \"%:state%\"."
+                          :rejected "%:event-actor% zavrnil vlogo."
+                          :remarked "%:event-actor% dodal pripombo."
+                          ;; Extra parameters for resources-changed:
+                          ;; %2 - %:catalogue-items% - Comma-separated list of catalogue item anems
+                          :resources-changed "%:event-actor% spremenil vire. Novi viri: %:catalogue-items%."
+                          :returned "%:event-actor% zahteval spremembe v vlogi."
+                          ;; Extra parameters for review-requested:
+                          ;; %2 - %:requested-users% - Comma-separated list of requested reviewers names
+                          :review-requested "%:event-actor% zahteval pregled od %:requested-users%."
+                          :reviewed "%:event-actor% pregledal vlogo."
+                          ;; Extra parameters for reviewer-invited:
+                          ;; %2 - %:invited-user% - Name & email of the invited reviewer
+                          :reviewer-invited "%:event-actor% povabil %:invited-user% k pregledu vloge."
+                          :reviewer-joined "%:event-actor% sprejel povabilo k pregledu."
+                          :revoked "%:event-actor% je umaknil pravico."
+                          :submitted "%:event-actor% oddal vlogo v pregled."
+                          :unknown "Neznano"
+                          ;; Extra parameters for voted:
+                          ;; %2 - %:vote% - Localized value of the vote
+                          :voted "%:event-actor% glasoval %:vote%."}
+                 :export {:applicant "Prijavitelj"
+                          :external-id "Zunanji ID"
+                          :first-submitted "Oddano"
+                          :id "ID"
+                          :resources "Viri"
+                          :state "Stanje"}
+                 :handlers "Obravnavalci"
+                 :id "ID"
+                 :intro [:div.intro [:p "Izpolnite in oddajte vlogo. K vlogi je lahko povabljenih več prijaviteljev kot članov, pri čemer mora vsak prijavitelj sprejeti pogoje uporabe, da pridobi dostop."]]
+                 :last-activity "Zadnja dejavnost"
+                 :latest-activity "Najnovejša dejavnost"
+                 :my-applications "Moje vloge"
+                 :not-shown-to-applying-users "Ni prikazano prijaviteljem"
+                 :redacted-attachments "Urejene priloge"
+                 :redacted-attachments-replaced "Nove priloge zamenjajo urejene priloge."
+                 :replacing-attachments "Nove priloge"
+                 :resource "Vir"
+                 :shown-to-applying-users "Prikazano prijaviteljem"
+                 :state "Stanje"
+                 :states {:approved "Odobreno"
+                          :closed "Zaprto"
+                          :draft "Osnutek"
+                          :rejected "Zavrnjeno"
+                          :returned "Vrnjeno"
+                          :revoked "Preklicano"
+                          :submitted "Oddano"
+                          :unknown "Neznano"}
+                 :submitted "Poslano"
+                 :todo "Potrebno ukrepanje"
+                 :todos {:new-application "Nova vloga"
+                         :no-pending-requests "Na vse vloge je bilo odgovorjeno"
+                         :resubmitted-application "Znova poslana vloga"
+                         :unknown "Neznano"
+                         :waiting-for-decision "Čakanje na odločitev"
+                         :waiting-for-review "Čakanje na pregled"
+                         :waiting-for-your-decision "Čakanje na vašo odločitev"
+                         :waiting-for-your-review "Čakanje na vaš pregled"}
+                 :view "Pregled"
+                 ;; %1 - application id
+                 ;; %2 - application description
+                 :view-application-with-description "Pregled vloge %1: %2"
+                 ;; %1 - application id
+                 ;; %2 - comma-separated list of catalogue item names
+                 :view-application-without-description "Pregled vloge %1 za vire: %2"
+                 :voting {:previously-voted [:p "Prej ste glasovali %1. Tukaj lahko spremenite svoj glas."]
+                          :votes {:accept "Sprejmi"
+                                  :empty "Prazno"
+                                  :not-voted "Ni glasoval"
+                                  :reject "Zavrni"}
+                          :voting "Glasovanje"}}
+  :cart {:add "Dodaj v košarico"
+         :apply "Prijavi se"
+         ;; %1 - number of resources
+         :apply-for-bundle "Prijavi se za %1 virov kot sveženj "
+         :header "%1 virov v košarici"
+         :intro [:div.intro [:p "Za dostopne pravice se prijavite tako, da vire dodate v košarico. Viri, ki so del iste vloge, bodo v košarici združeni."]]
+         :remove "Odstrani iz košarice"}
+  :catalogue {:catalogue "Katalog"
+              :header "Vir"
+              :intro ""
+              :more-info "Več informacij"
+              :continue-existing-application "Nadaljuj z aplikacijo"
+              :continue-existing-application-intro ""
+              :apply-resources "Prijavi se za dostop"}
+  :collapse {:hide "Prikaži manj"
+             :show "Prikaži več"}
+  :update-catalogue-item {:update-catalogue-item-intro "Namenjate se posodobiti naslednje kataloge. Spremembe bodo izvedene ena za drugo, tako da bo vsak star element zaključen, nova kopija pa bo uporabila izbrani obrazec in delovni tok."
+                          :form-selection "Obrazec"
+                          :workflow-selection "Delovni tok"}
+  :commands {:accept-invitation "Sprejmi povabilo"
+             :accept-licenses "Sprejmi pogoje uporabe"
+             :add-licenses "Dodaj pogoje uporabe"
+             :add-member "Dodaj člana"
+             :approve "Odobri"
+             :assign-external-id "Dodeli zunanji ID"
+             :change-applicant "Spremeni prijavitelja"
+             :change-resources "Spremeni vire"
+             :change-processing-state "Spremeni stanje"
+             :close "Zavrži vlogo"
+             :copy-as-new "Kopiraj kot novo vlogo"
+             ;; :create
+             :decide "Odloči se"
+             :delete "Izbriši osnutek"
+             :invite-decider "Povabi odločitelja"
+             :invite-member "Povabi člana"
+             :invite-reviewer "Povabi pregledovalca"
+             :redact-attachments "Uredi priloge"
+             :reject "Zavrni"
+             :remark "Pripomba"
+             :remove-member "Odstrani člana"
+             :request-decision "Zahtevaj odločitev"
+             :request-review "Zahtevaj pregled"
+             :return "Vrni prijavitelju"
+             :review "Preglej"
+             :revoke "Prekliči pravico"
+             :save-draft "Shrani kot osnutek"
+             ;; :send-expiration-notifications
+             :submit "Pošlji vlogo"
+             :uninvite-member "Razveljavi povabilo člana"
+             :vote "Glasuj"}
+  :create-form {:add-column "Dodaj stolpec"
+                :add-form-field "Dodaj polje"
+                :add-option "Dodaj možnost"
+                :additional-settings "Dodatne nastavitve"
+                :collapse-aria-label "Informacije o "
+                ;; %1 - column number
+                :column-n "Stolpec %1"
+                :column-key "ID"
+                :column-label "Oznaka"
+                :confirm-remove-field "Ali želite odstraniti to polje?"
+                :field-id "ID polja"
+                ;; %1 - field number
+                ;; %2 - field title
+                :field-n "Polje %1: %2"
+                :field-title "Naslov polja"
+                :field-type "Tip polja"
+                :info-text "Opis polja (neobvezno)"
+                :maxlength "Največje število znakov (neobvezno)"
+                :option-key "ID"
+                :option-label "Oznaka"
+                ;; %1 - option number
+                :option-n "Možnost %1"
+                :optional "Neobvezno polje"
+                :placeholder "Nadomestno besedilo (neobvezno)"
+                :privacy {:private "Zasebno"
+                          :public "Javno"}
+                :required-table "Zahtevana je vsaj ena vrstica"
+                :type-attachment "Priloga"
+                :type-date "Polje z datumom"
+                :type-description "Naslov vloge"
+                :type-email "E-poštni naslov"
+                :type-header "Glava"
+                :type-ip-address "IP naslov"
+                :type-label "Oznaka"
+                :type-multiselect "Seznam z več izbirami"
+                :type-option "Seznam možnosti"
+                :type-phone-number "Telefonska številka"
+                :type-privacy "Zasebnost"
+                :type-table "Tabela"
+                :type-text "Besedilno polje"
+                :type-texta "Besedilno območje"
+                :type-visibility "Vidnost"
+                :visibility {:always "Vedno"
+                             :field "Polje"
+                             :has-value "Ima eno od vrednosti"
+                             :hidden "Skrito"
+                             :only-if "Samo če"}}
+  :create-license {:external-link "Zunanja povezava"
+                   :inline-text "Neposredno besedilo"
+                   :license-attachment "Priloga licence"
+                   :license-text "Besedilo licence"
+                   :license-type "Tip licence"
+                   :link-to-license "Povezava na licenco"
+                   :title "Naslov"}
+  :create-resource {:licenses-selection "Licence"
+                    :resid "Identifikator vira"
+                    :resid-placeholder "urn:test:si:poljubni-uuid"}
+  :create-workflow {:anonymize-handling-explanation "Lahko skrijete osebne podatke upravljalcev (npr. ime in e-pošto) pred prijavitelji."
+                    :create-new-processing-state "Novo stanje obdelave"
+                    :create-new-rule "Novo pravilo"
+                    :decider-workflow "Delovni tok odločitelja"
+                    :decider-workflow-description "Upravljalec nima pooblastil za odobritev ali zavrnitev, to lahko stori le ločen odločitelj."
+                    :default-workflow "Privzeti delovni tok"
+                    :default-workflow-description "Upravljalec ima popoln nadzor nad postopkom vloge. Upravljalec lahko po potrebi zahteva preglede in odločitve drugih."
+                    :disable-commands "Onemogoči dejanja"
+                    :disable-commands-explanation [:<> "Dejanja lahko onemogočite za uporabnike, kadar so izpolnjeni določeni pogoji. Dejanja, stanja vlog in vloge uporabnikov so na voljo na " [:a {:href "https://github.com/CSCfi/rems/blob/master/docs/application-permissions.md" :target :_blank} "strani REMS Github."]]
+                    :handlers "Upravljalci"
+                    :master-workflow "Glavni delovni tok"
+                    :master-workflow-description "SAMO ZA TESTIRANJE. Združuje vse možne delovne tokove."
+                    :processing-states-explanation "Upravljalci lahko nastavijo in posodobijo stanje obdelave vloge z uporabo dejanja \"%:command%\". Spremembe stanja obdelave se lahko na primer uporabijo za pošiljanje samodejnih obvestil drugim sistemom."
+                    :rule "Pravilo"
+                    :title "Naslov"
+                    :voting-explanation "Lahko zahtevate glasovanje za odločitev o vlogi."}
+  :dropdown {:no-results "Ni rezultatov"
+             :placeholder "Izberi..."
+             :loading "Nalaganje..."
+             :placeholder-any-selection "Katera koli"}
+  :duo {:fields {:more-info "Dodatne informacije za prijavitelja (neobvezno)"}
+        :no-duo-codes "Ni kod ontologije uporabe podatkov (DUO)"
+        :restriction {:collaboration "Primarni raziskovalec/-ci"
+                      :date "Moratorij na objavo do (datum)"
+                      :institute "Odobrena institucija"
+                      :location "Geografska regija"
+                      :mondo "Bolezen (Mondo)"
+                      :months "Odobreno za (meseci)"
+                      :project "Odobren projekt"
+                      :topic "Dovoljen tip raziskave"
+                      :users "Odobreni uporabniki"}
+        :title "Ontologija uporabe podatkov"
+        :validation {:mondo-not-valid "Podane kode Mondo niso združljive:"
+                     :needs-validation "Omejitev ontologije uporabe podatkov (DUO) potrebuje ročno preverjanje:"}}
+
+  ;; Format parameters for all emails (unless otherwise noted):
+  ;; %1 - %:recipient% - name of recipient
+  ;; %2 - %:event-actor% - name of event actor
+  ;; %3 - %:application-id% - id of application (+ description of application if available)
+  ;; %4 - %:applicant% - name of applicant
+  ;; %5 - %:catalogue-items% - catalogue items of application, comma separated list
+  ;; %6 - %:application-url% - link to application
+  ;;
+  ;; Vector parameters (%1, %2, ...) in extra translations are supported for backwards compatibility.
+  ;; They cannot be mixed with named format parameters, and have fixed positions.
+  :email {:applicant-changed {:subject-to-member "Prijavitelj za vlogo %:application-id% spremenjen"
+                            :message-to-member "Spoštovani %:recipient%,\n\nPrijavitelj za vlogo %:application-id% je bil spremenjen v %:applicant% s strani %:event-actor%.\n\nVlogo si lahko ogledate na %:application-url%."
+                            :subject-to-handler "(%:application-id%) Prijavitelj spremenjen"
+                            :message-to-handler "Spoštovani %:recipient%,\n\nPrijavitelj za vlogo %:application-id% je bil spremenjen v %:applicant% s strani %:event-actor%.\n\nVlogo si lahko ogledate na %:application-url%."}
+        :application-approved {:subject-to-applicant "Vaša vloga %:application-id% je bila odobrena"
+                               :message-to-applicant "Spoštovani %:recipient%,\n\nVaša vloga %:application-id% je bila odobrena.\n\nVlogo in odločitev si lahko ogledate na %:application-url%"
+                               :subject-to-handler "(%:application-id%) Vloga je bila odobrena"
+                               :message-to-handler "Spoštovani %:recipient%,\n\n%:event-actor% je odobril vlogo %:application-id% s strani %:applicant%.\n\nVlogo in odločitev si lahko ogledate na %:application-url%"}
+        :application-rejected {:subject-to-applicant "Vaša vloga %:application-id% je bila zavrnjena"
+                               :message-to-applicant "Spoštovani %:recipient%,\n\nVaša vloga %:application-id% je bila zavrnjena.\n\nVlogo in odločitev si lahko ogledate na %:application-url%"
+                               :subject-to-handler "(%:application-id%) Vloga je bila zavrnjena"
+                               :message-to-handler "Spoštovani %:recipient%,\n\n%:event-actor% je zavrnil vlogo %:application-id% s strani %:applicant%.\n\nVlogo in odločitev si lahko ogledate na %:application-url%"}
+        :application-closed {:subject-to-applicant "Vaša vloga %:application-id% je bila zaprta"
+                             :message-to-applicant "Spoštovani %:recipient%,\n\nVaša vloga %:application-id% je bila zaprta.\n\nVlogo si še vedno lahko ogledate na %:application-url%"
+                             :subject-to-handler "(%:application-id%) Vloga je bila zaprta"
+                             :message-to-handler "Spoštovani %:recipient%,\n\n%:event-actor% je zaprl vlogo %:application-id% s strani %:applicant%.\n\nVlogo si lahko ogledate na %:application-url%"}
+        ;; Format parameters for application-expiration-notification:
+        ;; %1 - %:recipient% - name of recipient
+        ;; %2 - %:application-id% - id of application (+ description of application if available)
+        ;; %3 - %:last-activity% - date of last activity in application
+        ;; %4 - %:expires-on% - date of application expiration (after which draft application will be removed)
+        ;; %5 - %:application-url% - link to application
+        :application-expiration-notification {:subject-to-member "Vaša neoddana vloga %:application-id% bo kmalu izbrisana"
+                                              :message-to-member "Spoštovani %:recipient%,\n\nVaša neoddana vloga je neaktivna od %:last-activity% in bo izbrisana po %:expires-on%, če ne bo urejena.\n\nVlogo si lahko ogledate in uredite na %:application-url%"}
+        :application-returned {:subject-to-applicant "Vaša vloga %:application-id% potrebuje dopolnitve"
+                               :message-to-applicant "Spoštovani %:recipient%,\n\nVaša vloga %:application-id% je bila vrnjena v razmislek. Prosimo, da jo dopolnite po zahtevah in ponovno oddate.\n\nVlogo si lahko ogledate in uredite na %:application-url%"
+                               :subject-to-handler "(%:application-id%) Vloga je bila vrnjena prijavitelju"
+                               :message-to-handler "Spoštovani %:recipient%,\n\n%:event-actor% je vrnil vlogo %:application-id% prijavitelju %:applicant% za spremembe.\n\nVlogo si lahko ogledate na %:application-url%"}
+        :application-revoked {:subject-to-applicant "Pravice, povezane z vašo vlogo %:application-id%, so bile preklicane"
+                              :message-to-applicant "Spoštovani %:recipient%,\n\nPravice, povezane z vašo vlogo %:application-id%, so bile preklicane.\n\nVlogo si lahko ogledate na %:application-url%"
+                              :subject-to-handler "(%:application-id%) Pravice so bile preklicane"
+                              :message-to-handler "Spoštovani %:recipient%,\n\n%:event-actor% je preklical pravice, povezane z vlogo %:application-id% od %:applicant%.\n\nVlogo si lahko ogledate na %:application-url%"}
+        :application-licenses-added {:subject "Pogoji uporabe vaše vloge %:application-id% so se spremenili"
+                                     :message "Spoštovani %:recipient%,\n\n%:event-actor% je zahteval vašo odobritev spremenjenih pogojev uporabe za vlogo %:application-id%.\n\nVlogo si lahko ogledate in odobrite spremenjene pogoje uporabe na %:application-url%"}
+        :application-resubmitted {:subject-to-handler "(%:application-id%) Vloga je bila znova oddana"
+                                  :message-to-handler "Spoštovani %:recipient%,\n\nVloga %:application-id% je bila znova oddana od %:applicant%.\n\nVlogo lahko pregledate na %:application-url%"}
+        :application-submitted {:subject-to-applicant "Vaša vloga %:application-id% je bila oddana"
+                                :message-to-applicant "Spoštovani %:recipient%,\n\nVaša vloga %:application-id% je bila oddana. Prejeli boste obvestilo po e-pošti, ko bo vloga obravnavana.\n\nVlogo si lahko ogledate na %:application-url%"
+                                :subject-to-handler "(%:application-id%) Oddana je nova vloga"
+                                :message-to-handler "Spoštovani %:recipient%,\n\n%:applicant% je oddal novo vlogo %:application-id% za dostop do vira %:catalogue-items%.\n\nVlogo lahko pregledate na %:application-url%"}
+        :decided {:subject "(%:application-id%) Obvestilo o odločitvi vloge"
+                  :message "Spoštovani %:recipient%,\n\n%:event-actor% je vložil odločitev za vlogo %:application-id%, ki jo je oddal %:applicant%.\n\nVlogo lahko pregledate na %:application-url%"}
+        ;; Format parameters for decider-invited:
+        ;; %1 - %:recipient% - name of recipient
+        ;; %2 - %:applicant% - name of applicant
+        ;; %3 - %:application-id% - id of application (+ description of application if available)
+        ;; %4 - %:invitation-url% - invitation link
+        :decider-invited {:subject "Povabilo za sodelovanje pri obravnavi vloge %:application-id%"
+                          :message "Spoštovani %:recipient%,\n\nPovabljeni ste bili k sodelovanju pri obravnavi vloge %:application-id%, s strani %:applicant%.\n\nVlogo si lahko ogledate na %:invitation-url%"}
+        :decision-requested {:subject "(%:application-id%) Zahteva za odločitev"
+                             :message "Spoštovani %:recipient%,\n\n%:event-actor% je zahteval vašo odločitev o vlogi %:application-id%, ki jo je oddal %:applicant%.\n\nVlogo lahko pregledate na %:application-url%"}
+        :footer "\n\nProsimo, ne odgovarjajte na to samodejno generirano sporočilo."
+        :handler-reminder {;; Format parameters for handler-reminder/application:
+                           ;; %1 - %:applicant% - name of applicant
+                           ;; %2 - %:application-id% - id of application (+ description of application if available)
+                           :application "%:application-id%, oddano s strani %:applicant%"
+                           ;; Format parameters for handler-reminder/message:
+                           ;; %1 - %:recipient% - name of handler user
+                           ;; %2 - %:applications% - list of applications which require action
+                           ;; %3 - %:actions-url% - link to actions page
+                           :message "Spoštovani %:recipient%,\n\nNaslednje vloge so v teku in morda zahtevajo vaša dejanja:\n\n%:applications%\n\nVloge si lahko ogledate na %:actions-url%"
+                           :subject "Vloge v teku"}
+        :member-added {:subject "Dodani kot član vloge %:application-id%"
+                       :message "Spoštovani %:recipient%,\n\nDodani ste bili kot član vloge %:application-id%, ki jo je oddal %:applicant%.\n\nVlogo si lahko ogledate in sprejmete pogoje uporabe na %:application-url%"}
+        ;; Format parameters for member-invited:
+        ;; %1 - %:recipient% - name of recipient
+        ;; %2 - %:applicant% - name of applicant
+        ;; %3 - %:application-id% - id of application (+ description of application if available)
+        ;; %4 - %:invitation-url% - invitation link
+        :member-invited {:subject "Povabilo za sodelovanje pri vlogi %:application-id%"
+                         :message "Spoštovani %:recipient%,\n\nPovabljeni ste bili k sodelovanju pri vlogi %:application-id%, od %:applicant%.\n\nVlogo si lahko ogledate in sprejmete pogoje uporabe na %:invitation-url%"}
+        :regards "\n\nLep pozdrav,\n\nREMS\n"
+        :remarked {:subject "(%:application-id%) Vloga je bila komentirana"
+                   :message "Spoštovani %:recipient%,\n\n%:event-actor% je komentiral vašo vlogo %:application-id%, oddano od %:applicant%.\n\nVlogo in komentar si lahko ogledate na %:application-url%"}
+        :review-requested {:subject "(%:application-id%) Zahteva za pregled"
+                           :message "Spoštovani %:recipient%,\n\n%:event-actor% je zahteval vaš pregled za vlogo %:application-id%, ki jo je oddal %:applicant%.\n\nVlogo lahko pregledate na %:application-url%"}
+        :reviewed {:subject "(%:application-id%) Vloga je bila pregledana"
+                   :message "Spoštovani %:recipient%,\n\n%:event-actor% je pregledal vlogo %:application-id%, ki jo je oddal %:applicant%.\n\nVlogo si lahko ogledate na %:application-url%"}
+        ;; Format parameters for reviewer-invited:
+        ;; %1 - %:recipient% - name of recipient
+        ;; %2 - %:applicant% - name of applicant
+        ;; %3 - %:application-id% - id of application (+ description of application if available)
+        ;; %4 - %:invitation-url% - invitation link
+        :reviewer-invited {:subject "Povabilo za sodelovanje pri obravnavi vloge %:application-id%"
+                           :message "Spoštovani %:recipient%,\n\nPovabljeni ste bili k sodelovanju pri obravnavi vloge %:application-id%, s strani %:applicant%.\n\nVlogo si lahko ogledate na %:invitation-url%"}
+        :reviewer-reminder {;; Format parameters for reviewer-reminder/application:
+                            ;; %1 - %:applicant% - name of applicant
+                            ;; %2 - %:application-id% - id of application (+ description of application if available)
+                            :application "%:application-id%, oddano s strani %:applicant%"
+                            ;; Format parameters for reviewer-reminder/message:
+                            ;; %1 - %:recipient% - name of handler user
+                            ;; %2 - %:applications% - list of applications which require action
+                            ;; %3 - %:actions-url% - link to actions page
+                            :message "Spoštovani %:recipient%,\n\nNaslednje vloge čakajo na vaš pregled:\n\n%:applications%\n\nVloge si lahko ogledate na %:actions-url%"
+                            :subject "Vloge čakajo na pregled"}
+        ;; Format parameters for workflow-handler-invitation:
+        ;; %1 - %:recipient% - name of invited person, as entered in application
+        ;; %2 - %:invited-by% - name of person who sent the invitation
+        ;; %3 - %:workflow% - workflow title
+        ;; %4 - %:invitation-url% - invitation link
+        :workflow-handler-invitation {:message "Spoštovani %:recipient%,\n\n%:invited-by% vas je povabil, da ste obravnavalec vlog za delovni tok %:workflow%.\n\nDelovni tok si lahko ogledate na %:invitation-url%"
+                                      :subject "Povabilo za obravnavanje vlog"}}
+  :footer "CSC – IT Center for Science"
+  :form {:accepted-licenses "Sprejeti pogoji uporabe"
+         :actions "Dejanja"
+         :add-comment "Dodaj komentar"
+         :add-comments-not-shown-to-applicant "Dodaj komentar (ni prikazan prijavitelju)"
+         :add-comments-shown-to-applicant "Dodaj komentar (prikazan prijavitelju)"
+         :add-remark "Dodaj pripombo"
+         :add-row "Dodaj vrstico"
+         :alert-blacklisted-users "Ti člani vloge so na črnem seznamu za nekatere uporabljene vire:"
+         :alert-disabled-resources "Vloga vsebuje onemogočene kataloge:"
+         :application "Vloga"
+         :attachment-remove "Odstrani"
+         :attachments "Priloge"
+         :attachments-as-zip "Priloge (zip)"
+         :autosave "Samodejno shranjevanje"
+         :autosave-confirmed "Vloga je shranjena."
+         :autosave-in-progress "Shranjevanje"
+         :checkbox-checked "Da"
+         :checkbox-unchecked "Ne"
+         :comment "Komentar"
+         :copy-as-new "Kopiraj kot novo vlogo"
+         :current-value "Trenutno"
+         :diff-hide "Skrij spremembe"
+         :diff-show "Pokaži spremembe"
+         :events "Dogodki"
+         :failed "Neuspešno"
+         :has-accepted-licenses "Pogoji uporabe sprejeti."
+         :invalid-attachment "Tip datoteke priloge ni dovoljen."
+         :too-large-attachment "Priloga je prevelika."
+         :attachment-max-size "Dovoljena največja velikost priloge: %1."
+         :last-save "Zadnje shranjevanje %1."
+         :licenses "Pogoji uporabe"
+         ;; %1 - number
+         :maxlength "(največ %1 znakov)"
+         :must-accept-licenses "Vsak član mora sprejeti pogoje uporabe za dostop do virov."
+         :no-rows "Ni vrstic"
+         :optional "(neobvezno)"
+         :please-wait "Prosimo počakajte"
+         :previous-applications "Prejšnje vloge prijavitelja"
+         :previous-value "Prejšnje"
+         :required ""
+         :resources "Viri"
+         :save "Shrani kot osnutek"
+         :submit "Pošlji vlogo"
+         :success "Uspeh"
+         :upload "Naloži prilogo"
+         :upload-extensions "Dovoljene vrste datotek: %1."
+         :upload-replacement-attachment "Naloži nadomestno prilogo"
+         ;; %1 - field name
+         :validation {:column-values-missing "Vse kolone morajo imeti vrednosti za tabelo \"%1\"."
+                      :columns-required "Zahtevana je vsaj ena kolona."
+                      :invalid-email "Neveljaven e-poštni naslov."
+                      :invalid-phone-number "Neveljavna telefonska številka."
+                      :invalid-ip-address "Neveljaven IP naslov."
+                      :invalid-ip-address-private "To je zasebni IP naslov in ga ni mogoče uporabiti v aplikaciji."
+                      :invalid-user "Neveljaven uporabnik."
+                      :invalid-value "Neveljavna vrednost."
+                      :options-required "Zahtevana je vsaj ena možnost."
+                      :required "Polje \"%1\" je obvezno."
+                      :toolong "Besedilo v polju \"%1\" je predolgo."
+                      :unsupported "Polje \"%1\" ni podprto."}}
+  :header {:title "REMS"}
+  :item-lists {:move-down "Premakni navzdol"
+               :move-up "Premakni navzgor"
+               :remove "Odstrani"}
+  :label {:dash "%1 – %2" ; NB! Hyphen "-" is different from En dash "–" and Em dash "—"
+          :default "%1: %2"
+          :long "%1: %2 – %3"
+          :optional "%1 (neobvezno)"
+          :parens "%1 (%2)"}
+  :link {:download-file "Prenesi datoteko"
+         :opens-in-new-window "Odpre se v novem oknu"}
+  :login {:alternative "Druge možnosti prijave"
+          :alternative-text ""
+          :errors {:invalid-user "Prišlo je do težave pri prijavi zaradi manjkajočih informacij (%1). Preverite svojega ponudnika identitete."
+                   :email "E-pošta"
+                   :name "Ime"
+                   :unknown "Prišlo je do težave pri prijavi. Preverite svojega ponudnika identitete."}
+          :fake-text ""
+          :fake-title ""
+          :intro [:div [:h1 "Dobrodošli v REMS"] [:p "To je demo okolje za testiranje programske opreme REMS. Demo okolje vsebuje nekaj fiktivnih podatkovnih množic, za katere se lahko prijavite za dostop. Več informacij je na voljo na " [:a {:href "/extra-pages/about"} "strani O nas"] "."]]
+          :intro2 ""
+          :login "Prijava"
+          :oidc-text ""
+          :oidc-title ""
+          :text [:p "Prosimo, prijavite se za dostop do REMS."]
+          :title ""}
+  :missing "Manjka prevod %1"
+  :navigation {:actions "Dejanja"
+               :administration "Administracija"
+               :applications "Aplikacije"
+               :catalogue "Katalog"
+               ;; %1 - name of language
+               :change-language "Spremeni jezik v %1"
+               :home "Domov"
+               :logout "Odjava"
+               :navigation "Navigacija"
+               :navigation-small "Navigacijski meni"
+               :profile "Profil"
+               :skip-navigation "Preskoči na glavno vsebino"}
+  :not-found-page {:not-found "Ni najdeno"
+                   :page-was-not-found "Te strani ni bilo mogoče najti."}
+  :pdf {:generated "Ta PDF je bil ustvarjen ob"}
+  :phases {:apply "Prijavi se"
+           :approve "Odobritev"
+           :approved "Odobreno"
+           :phase-active "Aktivna faza:"
+           :phase-closed "Zaključena faza:"
+           :phase-completed "Zaključena faza:"
+           :phase-pending "Čakajoča faza:"
+           :phase-rejected "Zavrnjena faza"
+           :phase-revoked "Preklicana faza"
+           :rejected "Zavrnjeno"
+           :revoked "Preklicano"}
+  :profile {:idp-email "E-poštni naslov od ponudnika identitete"
+            :no-email "(ni e-poštnega naslova)"
+            :notification-email "Uporabite drug e-poštni naslov za obvestila"
+            :save "Shrani"
+            :settings "Nastavitve"
+            :warning-about-missing-email [:<> "Potrebno je " [:a {:href "/profile"} "dodati e-poštni naslov v svoje nastavitve"] ", da lahko prejemate obvestila o svojih aplikacijah."]
+            :your-details "Podrobnosti o uporabniku"}
+  :roles {:anonymous-handler :si.t.roles/handler ; use handler as default translation for workflow anonymized handlers
+          :applicant "Prijavitelj"
+          :decider "Odločitelj"
+          :handler "Upravljalec"
+          :member "Član"
+          :past-decider "Prejšnji odločitelj"
+          :past-reviewer "Prejšnji pregledovalec"
+          :reviewer "Pregledovalec"
+          :technical-role "Tehnična vloga"}
+  :search {:clear-search "Počisti iskanje"
+           :example-searches "Primeri iskanj"
+           :learn-more "Izvedite več"
+           :search "Iskanje"}
+  :table {:ascending-order "Naraščajoči vrstni red"
+          :descending-order "Padajoči vrstni red"
+          :first-rows-only "Prikazane so samo prve %1 vrstice."
+          :all-rows-selected "Izbrane so vse vrstice"
+          :no-rows-selected "Ni izbranih vrstic"
+          :show-all-rows "Prikaži vse vrstice"
+          :some-rows-selected "Izbrane nekatere vrstice"
+          :paging {:page "Stran"}}
+  :unauthorized-page {:unauthorized "Neavtorizirano"
+                      :you-are-unauthorized "Niste pooblaščeni za dostop do te strani."}
+  :unknown "Neznano"
+  :forbidden-page {:forbidden "Prepovedano"
+                   :you-are-forbidden "Dostop do strani je prepovedan."}
+  :error-page {:title "Težava"}
+  :meta {:description "Sistem za upravljanje pravic dostopa do virov(REMS) je orodje za upravljanje dostopnih pravic do virov, kot so raziskovalne podatkovne množice."
+         :keywords "REMS, pravice, upravljanje dostopa, orodje, pravice dostopa, viri, podatkovna množica"}}}
+         

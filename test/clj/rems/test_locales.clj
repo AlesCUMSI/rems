@@ -25,6 +25,9 @@
 
 (defn loc-sv []
   (read-string (slurp (io/resource "translations/sv.edn"))))
+  
+(defn loc-si []
+  (read-string (slurp (io/resource "translations/si.edn"))))
 
 (deftest test-all-languages-defined
   (is (= #{} (clojure.set/difference (recursive-keys (loc-en))
@@ -35,7 +38,10 @@
       "en matches fi")
   (is (= #{} (clojure.set/difference (recursive-keys (loc-en))
                                      (recursive-keys (loc-sv))))
-      "en matches sv"))
+      "en matches sv")
+  (is (= #{} (clojure.set/difference (recursive-keys (loc-en))
+                                     (recursive-keys (loc-si))))
+      "en matches si"))
 
 (defn- translation-keywords-in-use []
   ;; git grep would be nice, but circleci's git grep doesn't have -o
