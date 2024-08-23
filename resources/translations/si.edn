@@ -15,7 +15,7 @@
             :approve-reject "Potrdi ali zavrni"
             :assign-external-id "Dodeli zunanji ID"
             :assign-external-id-info "Zunanji ID"
-            :bundling-intro [:div.intro [:p "Upoštevajte, da je mogoče združiti le vire, ki imajo enak aplikacijski delovni tok."]]
+            :bundling-intro [:div.intro [:p "Upoštevajte, da je mogoče združiti samo vire, ki uporabljajo enak potek dela vloge."]]
             :cancel "Prekliči"
             :change-applicant "Spremeni prijavitelja"
             :change-resources "Spremeni vire"
@@ -79,18 +79,18 @@
                    :added-by "Dodano od"
                    :anonymize-handling "Anonimizirano upravljanje"
                    :application-state "Stanje vlog"
-                   :archive "Arhiv"
+                   :archive "Arhiviraj"
                    :back "Nazaj"
                    :blacklist "Črni seznam"
                    :cancel "Prekliči"
-                   :catalogue-item "Element v katalogu"
-                   :catalogue-items "Elementi v katalogu"
+                   :catalogue-item "Postavka kataloga"
+                   :catalogue-items "Postavke kataloga"
                    :categories "Kategorije"
                    :category "Kategorija"
                    :category-children "Podkategorije"
                    :comment "Komentar"
                    :copy-as-new "Kopiraj kot novo"
-                   :create-catalogue-item "Ustvari nov katalog"
+                   :create-catalogue-item "Ustvari novo postavko"
                    :create-category "Ustvari kategorijo"
                    :create-form "Ustvari obrazec"
                    :create-license "Ustvari licenco"
@@ -112,7 +112,7 @@
                    :do-not-change-form "Ne spreminjaj obrazca"
                    :do-not-change-workflow "Ne spreminjaj delovnega toka"
                    :edit "Uredi"
-                   :edit-catalogue-item "Uredi katalog"
+                   :edit-catalogue-item "Uredi postavko kataloga"
                    :edit-category "Uredi kategorijo"
                    :edit-form "Uredi obrazec"
                    :edit-organization "Uredi organizacijo"
@@ -158,8 +158,8 @@
                    :resource "Vir"
                    :resources "Viri"
                    ;; %1 - number
-                   :review-email-n "Preglej e-pošto %1"
-                   :review-emails "Preglej e-pošto"
+                   :review-email-n "E-pošta pregledovalca %1"
+                   :review-emails "E-poštni naslovi pregledovalcev"
                    :reviewers-vote "Glasovanje pregledovalcev"
                    :save "Shrani"
                    :short-name "Kratko ime"
@@ -168,7 +168,7 @@
                    :title "Naslov"
                    :type "Tip"
                    :unarchive "Odstrani iz arhive"
-                   :update-catalogue-item "Posodobi katalog"
+                   :update-catalogue-item "Posodobi postavko kataloga"
                    :user "Uporabnik"
                    :userid "Uporabniški ID"
                    :user-role "Vloga uporabnika"
@@ -178,7 +178,7 @@
                    :workflows "Delovni tokovi"
                    :workflow-anonymize-handling-explanation "Ta delovni tok skrije osebne podatke upravljalcev (npr. ime in e-pošto) prijaviteljem."
                    :workflow-disabled-commands-explanation "Ta delovni tok onemogoči dejanja za uporabnike, ko veljajo določeni pogoji."
-                   :workflow-processing-states-explanation "Ta delovni tok omogoča upravljalcu, da nastavi in posodobi stanje obdelave aplikacije."
+                   :workflow-processing-states-explanation "Ta potek dela omogoča upravljalcu nastavitev in posodabljanje stanja obdelave vloge."
                    :workflow-type "Tip delovnega toka"}
   :applicant-info {:applicant "Prijavitelj"
                    :applicants "Prijavitelji"
@@ -328,7 +328,7 @@
                                   :reject "Zavrni"}
                           :voting "Glasovanje"}}
   :cart {:add "Dodaj v košarico"
-         :apply "Prijavi se"
+         :apply "Oddaj vlogo/-e"
          ;; %1 - number of resources
          :apply-for-bundle "Prijavi se za %1 virov kot sveženj "
          :header "%1 virov v košarici"
@@ -338,12 +338,12 @@
               :header "Vir"
               :intro ""
               :more-info "Več informacij"
-              :continue-existing-application "Nadaljuj z aplikacijo"
+              :continue-existing-application "Nadaljuj z vlogo"
               :continue-existing-application-intro ""
               :apply-resources "Prijavi se za dostop"}
   :collapse {:hide "Prikaži manj"
              :show "Prikaži več"}
-  :update-catalogue-item {:update-catalogue-item-intro "Namenjate se posodobiti naslednje kataloge. Spremembe bodo izvedene ena za drugo, tako da bo vsak star element zaključen, nova kopija pa bo uporabila izbrani obrazec in delovni tok."
+  :update-catalogue-item {:update-catalogue-item-intro "Namenjate se posodobiti naslednje postavke kataloga. Spremembe bodo izvedene ena za drugo, tako da bo vsak stara postavka zaključena, nova kopija pa bo uporabila izbrani obrazec in delovni tok."
                           :form-selection "Obrazec"
                           :workflow-selection "Delovni tok"}
   :commands {:accept-invitation "Sprejmi povabilo"
@@ -374,7 +374,7 @@
              :revoke "Prekliči pravico"
              :save-draft "Shrani kot osnutek"
              ;; :send-expiration-notifications
-             :submit "Pošlji vlogo"
+             :submit "Oddaj vlogo"
              :uninvite-member "Razveljavi povabilo člana"
              :vote "Glasuj"}
   :create-form {:add-column "Dodaj stolpec"
@@ -625,7 +625,7 @@
          :resources "Viri"
          :save "Shrani kot osnutek"
          :submit "Pošlji vlogo"
-         :success "Uspeh"
+         :success "Uspešno"
          :upload "Naloži prilogo"
          :upload-extensions "Dovoljene vrste datotek: %1."
          :upload-replacement-attachment "Naloži nadomestno prilogo"
@@ -635,7 +635,7 @@
                       :invalid-email "Neveljaven e-poštni naslov."
                       :invalid-phone-number "Neveljavna telefonska številka."
                       :invalid-ip-address "Neveljaven IP naslov."
-                      :invalid-ip-address-private "To je zasebni IP naslov in ga ni mogoče uporabiti v aplikaciji."
+                      :invalid-ip-address-private "To je zasebni IP naslov in ga ni mogoče uporabiti v vlogi."
                       :invalid-user "Neveljaven uporabnik."
                       :invalid-value "Neveljavna vrednost."
                       :options-required "Zahtevana je vsaj ena možnost."
@@ -671,7 +671,7 @@
   :missing "Manjka prevod %1"
   :navigation {:actions "Dejanja"
                :administration "Administracija"
-               :applications "Aplikacije"
+               :applications "Vloge"
                :catalogue "Katalog"
                ;; %1 - name of language
                :change-language "Spremeni jezik v %1"
@@ -700,7 +700,7 @@
             :notification-email "Uporabite drug e-poštni naslov za obvestila"
             :save "Shrani"
             :settings "Nastavitve"
-            :warning-about-missing-email [:<> "Potrebno je " [:a {:href "/profile"} "dodati e-poštni naslov v svoje nastavitve"] ", da lahko prejemate obvestila o svojih aplikacijah."]
+            :warning-about-missing-email [:<> "Potrebno je " [:a {:href "/profile"} "dodati e-poštni naslov v svoje nastavitve"] ", da lahko prejemate obvestila o svojih vlogah."]
             :your-details "Podrobnosti o uporabniku"}
   :roles {:anonymous-handler :si.t.roles/handler ; use handler as default translation for workflow anonymized handlers
           :applicant "Prijavitelj"
