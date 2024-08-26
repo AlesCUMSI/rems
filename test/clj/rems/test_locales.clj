@@ -58,7 +58,7 @@
 (deftest test-translation-keywords-in-use
   (let [keys-in-source (set (translation-keywords-in-use))]
     (assert (seq keys-in-source))
-    (doseq [lang [:en :fi :sv]]
+    (doseq [lang [:en :fi :sv :si]]
       (testing lang
         (let [dictionary (-> (locales/load-translations {:languages [lang]
                                                          :translations-directory "translations/"})
